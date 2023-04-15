@@ -16,5 +16,3 @@ def post_new_client_kit(kit_body):
 
 
 
-
-

@@ -1,5 +1,3 @@
-
-
 headers = {
     "Content-Type": "application/json"
 }
@@ -13,7 +11,6 @@ user_body = {
 kit_body = {
     "name": "Набор"
 }
-
 
 authorization = {
     "Content-Type": "application/json",
