@@ -2,10 +2,8 @@ import sender_stand_request
 import data
 
 #данная функция создает пользователя и записывает токкен в data.authorization
-#но дергать её надо только один раз, так как нужен один зарег. пользователь,
-#поэтому в начале test_, что бы она с самого начала запустилась, и на весь
-#ход тестов был один токкен.
-def test_new_user_token():
+#но дергать её надо только один раз, поэтому она запускается в test1
+def get_new_user_token():
     user_token = sender_stand_request.post_new_user(data.user_body).json()["authToken"]
     data.authorization["Authorization"] = "Bearer " + user_token
 
@@ -31,7 +29,9 @@ def negative_assert_code_400(kit_body):
 
 #test1 - Допустимое количество символов (1)
 def test_create_kit_body_1_letter_in_name():
+    get_new_user_token()
     positive_assert("a")
+    print(data.authorization["Authorization"])
 
 #test2- Допустимое количество символов (511)
 def test_create_kit_body_511_letter_in_name():
@@ -43,6 +43,7 @@ def test_create_kit_body_511_letter_in_name():
     "cdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcda"\
     "bcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcda"\
     "bcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabC")
+    print(data.authorization["Authorization"])
 
 
 #test3 - Количество символов меньше допустимого (0)
